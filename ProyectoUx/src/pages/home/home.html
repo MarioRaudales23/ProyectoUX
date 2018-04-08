@@ -1,17 +1,106 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+  <h1 id='tit' style="text-align: center">DENUNCIAS HONDURAS</h1>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <div class='allHome'>
+    
+    <div class='left'>
+      
+      <div id='intro'>
+          <ion-row class="search_row">
+          <ion-col col-1>
+                <button ion-fab color="danger" mini>
+                    <ion-icon>
+                      <ion-img src="assets/imgs/youtubejpg.jpg"></ion-img>
+                    </ion-icon>
+                  </button>
+          </ion-col>
+          <ion-col col-2>
+            <div class="buttons" item-right>
+                <button ion-fab mini>
+                    <ion-icon name="mail"></ion-icon>
+                  </button>
+            </div>
+          </ion-col>
+        </ion-row>
+        
+
+        <p>Denuncias Honduras es una iniciativa civil para documentar y denunciar las violaciones de derechos humanos cometidas
+          por los entes de seguridad del Estado hondureño después de las Elecciones Generales de 2017. Nuestro alcance es
+          meramente informativo. Exhortamos a quienes son víctimas de violaciones a sus derechos, a que recurran a las instituciones
+          gubernamentales y organizaciones de derechos humanos correspondientes a interponer sus denuncias.
+        </p>
+        <div class='categorias'>
+          <h2 style="text-align: center"> Categorias</h2>
+          <button ion-button color="secondary">ASESINATOS EXTRAJUDIACIALES</button>
+          <button ion-button color="secondary">BRUTALIDAD POLICIAL</button>
+          <br>
+          <button ion-button color="secondary">DESALOJOS VIOLENTOS</button>
+          <button ion-button color="secondary">PERSONAS DESAPARECIDAS</button>
+          <br>
+          <button ion-button color="secondary">PERSONAS DETENIDAS</button>
+          <button ion-button color="secondary">SAQUEOS</button>
+          <br>
+          <button ion-button color="secondary">CENSURA</button>
+          <button ion-button color="secondary">TORTURA</button>
+          <br>
+        </div>
+        <ion-item *ngFor="let message of messages | async" class="itemchat">
+          <div>
+            <ion-card>
+
+            </ion-card>
+          </div>
+
+        </ion-item>
+      </div>
+    </div>
+    <div class="right">
+      <div id='search'>
+      <br>
+      <br>
+        
+        <h2>Buscar</h2>
+        <ion-toolbar>
+          <ion-row class="search_row">
+            <ion-col col-9>
+              <ion-item no-lines>
+                <ion-input type="text" placeholder="Buscar..." [(ngModel)]="search"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-3>
+              <div class="buttons" item-right>
+                <button ion-fab mini [disabled]="search === ''">
+                  <ion-icon name="search"></ion-icon>
+                </button>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-toolbar>
+      </div>
+      <div id='denunciasRecientes'>
+      <br>
+      <br>
+        
+        <h2>Denuncias Recientes</h2>
+        <ion-item *ngFor="let message of messages | async" class="itemchat">
+          <div>
+            <p></p>
+          </div>
+        </ion-item>
+      </div>
+      <div>
+          <br>
+          <br>
+          <h2>Contacto</h2>
+          <p>WhatsApp: +1-504-502-7058</p>
+          <p>info@denunciashonduras.com</p>
+          
+              
+        </div>
+    </div>
+    
+  </div>
+
 </ion-content>

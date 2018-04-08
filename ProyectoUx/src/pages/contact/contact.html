@@ -1,17 +1,86 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Contact
-    </ion-title>
-  </ion-navbar>
+    <h1 id='tit' style="text-align: center">DENUNCIAS HONDURAS</h1>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+<ion-content padding>
+    <div class='allHome'>
+        <div class='left'>
+         <div>
+            <p>Ingresa tu denuncia en el formulario o envíanoslas a nuestro número de WhatsApp: +1-504-5027058.</p>
+         </div> 
+         <ion-list>
+            <ion-item>
+              <ion-label color="primary">Nombre (opcional)</ion-label>
+              <ion-input placeholder="nombre"></ion-input>
+            </ion-item>
+          
+            <ion-item>
+              <ion-label color="primary" >Tu email (obligatorio)</ion-label>
+              <ion-input type="tel" placeholder="email"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label color="primary">Encabezado (obligatorio)</ion-label>
+                <ion-input placeholder="encabezado"></ion-input>
+              </ion-item>
+            
+              <ion-item>
+                <ion-label color="primary" >Ubicacion (obligatorio)</ion-label>
+                <ion-input type="tel" placeholder="ubicacion"></ion-input>
+              </ion-item>
+          
+            <ion-item>
+                <ion-label color="primary" stacked>Descripcion (obligatorio)</ion-label>
+              <ion-textarea placeholder="descripcion"></ion-textarea>
+            </ion-item>
+          </ion-list>
+          <p>Subir archivo como evidencia (Imagen, video o documento). </p>
+          <button ion-button color="primary">ENVIAR</button>
+          
+        </div>
+        <div class="right">
+          <div id='search'>
+          <br>
+          <br>
+            
+            <h2>Buscar</h2>
+            <ion-toolbar>
+              <ion-row class="search_row">
+                <ion-col col-9>
+                  <ion-item no-lines>
+                    <ion-input type="text" placeholder="Buscar..." [(ngModel)]="search"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col col-3>
+                  <div class="buttons" item-right>
+                    <button ion-fab mini [disabled]="search === ''">
+                      <ion-icon name="search"></ion-icon>
+                    </button>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-toolbar>
+          </div>
+          <div id='denunciasRecientes'>
+          <br>
+          <br>
+            
+            <h2>Denuncias Recientes</h2>
+            <ion-item *ngFor="let message of messages | async" class="itemchat">
+              <div>
+                <p></p>
+              </div>
+            </ion-item>
+          </div>
+          <div>
+              <br>
+              <br>
+              <h2>Contacto</h2>
+              <p>WhatsApp: +1-504-502-7058</p>
+              <p>info@denunciashonduras.com</p>
+              
+                  
+            </div>
+        </div>
+        
+      </div>
 </ion-content>
