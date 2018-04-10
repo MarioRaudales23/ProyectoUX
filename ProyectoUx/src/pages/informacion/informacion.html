@@ -1,10 +1,25 @@
 <ion-header>
     <h1 id='tit' style="text-align: center">DENUNCIAS HONDURAS</h1>
+    <div *ngIf="afAuth.authState | async as user; else showLogin">
+      <ion-title>
+        <ion-item class="item item-trns text-center">
+          <ion-avatar item-end *ngIf="afAuth.authState | async" (click)="show()">
+            <img src={{currentUser.photoURL}}>
+          </ion-avatar>
+        </ion-item>
+      </ion-title>
+    </div>
+    <ng-template #showLogin>
+      <button ion-button color="danger" full (click)="login()" icon-right>
+        <ion-icon name="logo-googleplus"></ion-icon>
+        Login with Google
+      </button>
+    </ng-template>
   </ion-header>
-  
+
   <ion-content padding>
     <div class='allHome'>
-      
+
       <div class='left'>
         <br>
         <br>
@@ -18,7 +33,7 @@
         <div id='search'>
         <br>
         <br>
-          
+
           <h2>Buscar</h2>
           <ion-toolbar>
             <ion-row class="search_row">
@@ -40,7 +55,7 @@
         <div id='denunciasRecientes'>
         <br>
         <br>
-          
+
           <h2>Denuncias Recientes</h2>
           <ion-item *ngFor="let message of messages | async" class="itemchat">
             <div>
@@ -54,11 +69,11 @@
             <h2>Contacto</h2>
             <p>WhatsApp: +1-504-502-7058</p>
             <p>info@denunciashonduras.com</p>
-            
-                
+
+
           </div>
       </div>
-      
+
     </div>
-  
+
   </ion-content>

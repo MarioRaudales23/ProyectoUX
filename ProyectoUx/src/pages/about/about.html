@@ -1,5 +1,20 @@
 <ion-header>
   <h1 id='tit' style="text-align: center">DENUNCIAS HONDURAS</h1>
+  <div *ngIf="afAuth.authState | async as user; else showLogin">
+    <ion-title>
+      <ion-item class="item item-trns text-center">
+        <ion-avatar item-end *ngIf="afAuth.authState | async" (click)="show()">
+          <img src={{currentUser.photoURL}}>
+        </ion-avatar>
+      </ion-item>
+    </ion-title>
+  </div>
+  <ng-template #showLogin>
+    <button ion-button color="danger" full (click)="login()" icon-right>
+      <ion-icon name="logo-googleplus"></ion-icon>
+      Login with Google
+    </button>
+  </ng-template>
 </ion-header>
 
 <ion-content padding>
@@ -51,3 +66,4 @@
       </div>
     </div>
 </ion-content>
+

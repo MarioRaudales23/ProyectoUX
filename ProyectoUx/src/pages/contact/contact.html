@@ -1,5 +1,20 @@
 <ion-header>
     <h1 id='tit' style="text-align: center">DENUNCIAS HONDURAS</h1>
+  <div *ngIf="afAuth.authState | async as user; else showLogin">
+    <ion-title>
+      <ion-item class="item item-trns text-center">
+        <ion-avatar item-end *ngIf="afAuth.authState | async" (click)="show()">
+          <img src={{currentUser.photoURL}}>
+        </ion-avatar>
+      </ion-item>
+    </ion-title>
+  </div>
+  <ng-template #showLogin>
+    <button ion-button color="danger" full (click)="login()" icon-right>
+      <ion-icon name="logo-googleplus"></ion-icon>
+      Login with Google
+    </button>
+  </ng-template>
 </ion-header>
 
 <ion-content padding>
@@ -7,13 +22,13 @@
         <div class='left'>
          <div>
             <p>Ingresa tu denuncia en el formulario o envíanoslas a nuestro número de WhatsApp: +1-504-5027058.</p>
-         </div> 
+         </div>
          <ion-list>
             <ion-item>
               <ion-label color="primary">Nombre (opcional)</ion-label>
               <ion-input placeholder="nombre"></ion-input>
             </ion-item>
-          
+
             <ion-item>
               <ion-label color="primary" >Tu email (obligatorio)</ion-label>
               <ion-input type="tel" placeholder="email"></ion-input>
@@ -22,12 +37,12 @@
                 <ion-label color="primary">Encabezado (obligatorio)</ion-label>
                 <ion-input placeholder="encabezado"></ion-input>
               </ion-item>
-            
+
               <ion-item>
                 <ion-label color="primary" >Ubicacion (obligatorio)</ion-label>
                 <ion-input type="tel" placeholder="ubicacion"></ion-input>
               </ion-item>
-          
+
             <ion-item>
                 <ion-label color="primary" stacked>Descripcion (obligatorio)</ion-label>
               <ion-textarea placeholder="descripcion"></ion-textarea>
@@ -35,13 +50,13 @@
           </ion-list>
           <p>Subir archivo como evidencia (Imagen, video o documento). </p>
           <button ion-button color="primary">ENVIAR</button>
-          
+
         </div>
         <div class="right">
           <div id='search'>
           <br>
           <br>
-            
+
             <h2>Buscar</h2>
             <ion-toolbar>
               <ion-row class="search_row">
@@ -63,7 +78,7 @@
           <div id='denunciasRecientes'>
           <br>
           <br>
-            
+
             <h2>Denuncias Recientes</h2>
             <ion-item *ngFor="let message of messages | async" class="itemchat">
               <div>
@@ -77,10 +92,10 @@
               <h2>Contacto</h2>
               <p>WhatsApp: +1-504-502-7058</p>
               <p>info@denunciashonduras.com</p>
-              
-                  
+
+
             </div>
         </div>
-        
+
       </div>
 </ion-content>
