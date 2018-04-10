@@ -11,7 +11,7 @@ page-home {
         flex-direction: column;
         text-align: center;
         height: 100%;
-        width: 57%;
+        width: 80%;
         margin-left: 3%;
     }
     .right{
@@ -20,7 +20,7 @@ page-home {
         flex-direction: column;
         text-align: center;
         height: 96%;
-        width: 37%;
+        width: 20%;
         margin-right: 3%;
         margin-top: 4%;
         margin-left: 3%;
@@ -29,7 +29,14 @@ page-home {
         margin-top: 2%;
     }
     #tit{
-        color: green;
+        color: #009688;
+        font-family: "Dosis", "Ubuntu", sans-serif;
+    }
+
+    .textoPrincipal{
+        font-size: 24px;
+        font-family: "Roboto", Sans-serif;
+        font-weight: 100;
     }
 
 }
