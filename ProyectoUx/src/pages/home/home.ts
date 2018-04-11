@@ -18,6 +18,7 @@ export class HomePage {
   userRef: any;
   DenunciasRef: firebase.database.Reference;
   users: AngularFireList<any>;
+  categoria:any;
   DenunciaRef: any;
   Denuncia: AngularFireList<any>;
   denuncias: Array<any>;
@@ -84,7 +85,9 @@ export class HomePage {
   initializeItems(): void {
     this.denuncias = this.loadedDenuncias;
   }
-
+  changeStatus(Categ:string){
+    this.categoria = Categ;
+  }
   getItems(searchbar) {
     this.initializeItems();
     var q = (searchbar.srcElement || searchbar.target).value;

@@ -62,26 +62,26 @@
           sus denuncias.</p>
         <div class='categorias'>
           <h2 style="text-align: center"> Categorias</h2>
-          <button ion-button color="secondary">ASESINATOS EXTRAJUDIACIALES</button>
-          <button ion-button color="secondary">BRUTALIDAD POLICIAL</button>
+          <button ion-button color="secondary" (click)="changeStatus('Asesinatos')">ASESINATOS EXTRAJUDIACIALES</button>
+          <button ion-button color="secondary" (click)="changeStatus('Brutalidad')">BRUTALIDAD POLICIAL</button>
           <br>
-          <button ion-button color="secondary">DESALOJOS VIOLENTOS</button>
-          <button ion-button color="secondary">PERSONAS DESAPARECIDAS</button>
+          <button ion-button color="secondary" (click)="changeStatus('Desalojos')">DESALOJOS VIOLENTOS</button>
+          <button ion-button color="secondary" (click)="changeStatus('Desaparecidas')">PERSONAS DESAPARECIDAS</button>
           <br>
-          <button ion-button color="secondary">PERSONAS DETENIDAS</button>
-          <button ion-button color="secondary">SAQUEOS</button>
+          <button ion-button color="secondary" (click)="changeStatus('Detenidas')">PERSONAS DETENIDAS</button>
+          <button ion-button color="secondary" (click)="changeStatus('Saqueos')">SAQUEOS</button>
           <br>
-          <button ion-button color="secondary">CENSURA</button>
-          <button ion-button color="secondary">TORTURA</button>
+          <button ion-button color="secondary" (click)="changeStatus('Censura')">CENSURA</button>
+          <button ion-button color="secondary" (click)="changeStatus('Tortura')">TORTURA</button>
           <br>
         </div>
         <ion-list>
-          <div *ngFor="let denuncia of denuncias">
-            <ion-item text-wrap>
+          <div *ngFor="let denuncia of denuncias; let idx = index">
+            <ion-item text-wrap *ngIf="denuncia.info.categoria == categoria && idx <=5">
               <ion-card >
                 <ion-card-header>
                   <h2>
-                    <b>{{ denuncia.info.encabezado }}</b>
+                    <b>{{ denuncia.info.encabezado }} </b>
                   </h2>
                 </ion-card-header>
                 <ion-card-content>
