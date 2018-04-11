@@ -55,6 +55,19 @@
           <ion-label color="primary" stacked>Descripcion (obligatorio):</ion-label>
           <ion-textarea placeholder="descripcion" [(ngModel)]="Datos.descripcion" name="descripcion"></ion-textarea>
         </ion-item>
+        <ion-item>
+          <ion-label color="primary" stacked>Categoria(obligatorio):</ion-label>
+          <ion-select [(ngModel)]="Datos.categoria" name="categoria" placeholder="Categoria">
+            <ion-option value="Asesinatos">Asesinatos Extrajudiciales</ion-option>
+            <ion-option value="Brutalidad">Brutalidad Policial</ion-option>
+            <ion-option value="Desalojos">Desalojos Violentos</ion-option>
+            <ion-option value="Desaparecidas">Personas Desaparecidas</ion-option>
+            <ion-option value="Detenidas">Personas Detenidas</ion-option>
+            <ion-option value="Saqueos">Saqueos</ion-option>
+            <ion-option value="Censura">Censura</ion-option>
+            <ion-option value="Tortura">Tortura</ion-option>
+          </ion-select>
+        </ion-item>
         <button ion-button type="submit" color="primary" block>ENVIAR</button>
       </form>
     </div>
