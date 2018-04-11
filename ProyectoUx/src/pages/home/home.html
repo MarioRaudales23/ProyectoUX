@@ -77,11 +77,13 @@
         </div>
         <ion-list>
           <div *ngFor="let denuncia of denuncias">
-            <ion-item>
-              <ion-card>
-                <h2>
-                  <b>{{ denuncia.info.encabezado }}</b>
-                </h2>
+            <ion-item text-wrap>
+              <ion-card >
+                <ion-card-header>
+                  <h2>
+                    <b>{{ denuncia.info.encabezado }}</b>
+                  </h2>
+                </ion-card-header>
                 <ion-card-content>
                   <p>{{ denuncia.info.descripcion }}</p>
                 </ion-card-content>
