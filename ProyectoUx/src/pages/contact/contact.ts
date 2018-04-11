@@ -60,7 +60,7 @@ export class ContactPage {
     const NewMensajeRef = this.DenunciaRef.push({info : this.Datos});
     NewMensajeRef.set({
       info : this.Datos,
-      user: tempuser,
+      user: tempuser.displayname,
     });
   }
   login() {
