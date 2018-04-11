@@ -35,16 +35,16 @@
       <div id='intro'>
         <ion-row class="search_row">
           <ion-col col-1>
-                <button ion-fab color="danger" mini>
-                    <ion-icon name="logo-youtube">
-                    </ion-icon>
-                  </button>
+            <button ion-fab color="danger" mini>
+              <ion-icon name="logo-youtube">
+              </ion-icon>
+            </button>
           </ion-col>
           <ion-col col-2>
             <div class="buttons" item-right>
-                <button ion-fab mini>
-                    <ion-icon name="mail"></ion-icon>
-                  </button>
+              <button ion-fab mini>
+                <ion-icon name="mail"></ion-icon>
+              </button>
             </div>
           </ion-col>
         </ion-row>
@@ -53,9 +53,9 @@
         <p class="textoPrincipal">Denuncias Honduras es una iniciativa civil para documentar y denunciar las violaciones de derechos humanos cometidas
           por los entes de seguridad del Estado hondureño después de las Elecciones Generales de 2017.
         </p>
-        <p class="textoPrincipal">Nuestro alcance es
-          meramente informativo. Exhortamos a quienes son víctimas de violaciones a sus derechos, a que recurran a las instituciones
-          gubernamentales y organizaciones de derechos humanos correspondientes a interponer sus denuncias.</p>
+        <p class="textoPrincipal">Nuestro alcance es meramente informativo. Exhortamos a quienes son víctimas de violaciones a sus derechos, a que
+          recurran a las instituciones gubernamentales y organizaciones de derechos humanos correspondientes a interponer
+          sus denuncias.</p>
         <div class='categorias'>
           <h2 style="text-align: center"> Categorias</h2>
           <button ion-button color="secondary">ASESINATOS EXTRAJUDIACIALES</button>
@@ -71,20 +71,26 @@
           <button ion-button color="secondary">TORTURA</button>
           <br>
         </div>
-        <ion-item *ngFor="let message of Denuncia | async" class="itemchat">
-          <div>
-            <ion-card>
-              
-            </ion-card>
+        <ion-list>
+          <div *ngFor="let denuncia of denuncias">
+            <ion-item>
+              <ion-card>
+                <h2>
+                  <b>{{ denuncia.info.encabezado }}</b>
+                </h2>
+                <ion-card-content>
+                  <p>{{ denuncia.info.descripcion }}</p>
+                </ion-card-content>
+              </ion-card>
+            </ion-item>
           </div>
-
-        </ion-item>
+        </ion-list>
       </div>
     </div>
     <div class="right">
       <div id='search'>
-      <br>
-      <br>
+        <br>
+        <br>
 
         <h2>Buscar</h2>
         <ion-toolbar>
@@ -94,25 +100,27 @@
         </ion-toolbar>
       </div>
       <div id='denunciasRecientes'>
-      <br>
-      <br>
+        <br>
+        <br>
 
         <h2>Denuncias Recientes</h2>
-        <ion-item *ngFor="let message of  Denuncia | async" class="itemchat">
-          <div>
-            <p></p>
+        <ion-list>
+          <div *ngFor="let denuncia of denuncias2; let i=index">
+            <ion-item *ngIf="i<=5">
+              {{denuncia.info.encabezado}}
+            </ion-item>
           </div>
-        </ion-item>
+        </ion-list>
       </div>
       <div>
-          <br>
-          <br>
-          <h2>Contacto</h2>
-          <p>WhatsApp: +1-504-502-7058</p>
-          <p>info@denunciashonduras.com</p>
+        <br>
+        <br>
+        <h2>Contacto</h2>
+        <p>WhatsApp: +1-504-502-7058</p>
+        <p>info@denunciashonduras.com</p>
 
 
-        </div>
+      </div>
     </div>
 
   </div>

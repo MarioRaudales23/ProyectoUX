@@ -50,11 +50,13 @@
           <br>
 
           <h2>Denuncias Recientes</h2>
-          <ion-item *ngFor="let message of Denuncia | async" class="itemchat">
-            <div>
-              <p></p>
-            </div>
-          </ion-item>
+          <ion-list>
+              <div *ngFor="let denuncia of denuncias2; let i=index">
+                <ion-item *ngIf="i<=5">
+                  {{denuncia.info.encabezado}}
+                </ion-item>
+              </div>
+            </ion-list>
         </div>
         <div>
           <br>

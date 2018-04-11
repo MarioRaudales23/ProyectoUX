@@ -27,77 +27,71 @@
 </ion-header>
 
 <ion-content padding>
-    <div class='allHome'>
-        <div class='left'>
-         <div>
-            <p>Ingresa tu denuncia en el formulario o envíanoslas a nuestro número de WhatsApp: +1-504-5027058.</p>
-         </div>
-          <form (ngSubmit)="DenunciaForm()">
-            <ion-item>
-              <ion-label color="primary">Nombre (opcional):</ion-label>
-              <ion-input placeholder="nombre" type="text" [(ngModel)]="Datos.nombre" name="nombre"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label color="primary" >Tu email (obligatorio):</ion-label>
-              <ion-input type="text" placeholder="email" [(ngModel)]="Datos.email" name="email"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label color="primary">Encabezado (obligatorio):</ion-label>
-              <ion-input placeholder="encabezado" type="text" [(ngModel)]="Datos.encabezado" name="encabezado"></ion-input>
-            </ion-item>
+  <div class='allHome'>
+    <div class='left'>
+      <div>
+        <p>Ingresa tu denuncia en el formulario o envíanoslas a nuestro número de WhatsApp: +1-504-5027058.</p>
+      </div>
+      <form (ngSubmit)="DenunciaForm()">
+        <ion-item>
+          <ion-label color="primary">Nombre (opcional):</ion-label>
+          <ion-input placeholder="nombre" type="text" [(ngModel)]="Datos.nombre" name="nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="primary">Tu email (obligatorio):</ion-label>
+          <ion-input type="text" placeholder="email" [(ngModel)]="Datos.email" name="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="primary">Encabezado (obligatorio):</ion-label>
+          <ion-input placeholder="encabezado" type="text" [(ngModel)]="Datos.encabezado" name="encabezado"></ion-input>
+        </ion-item>
 
-            <ion-item>
-              <ion-label color="primary" >Ubicacion (obligatorio):</ion-label>
-              <ion-input type="tel" placeholder="ubicacion" type="text" [(ngModel)]="Datos.ubicacion" name="ubicacion"></ion-input>
-            </ion-item>
+        <ion-item>
+          <ion-label color="primary">Ubicacion (obligatorio):</ion-label>
+          <ion-input type="tel" placeholder="ubicacion" type="text" [(ngModel)]="Datos.ubicacion" name="ubicacion"></ion-input>
+        </ion-item>
 
-            <ion-item>
-              <ion-label color="primary" stacked>Descripcion (obligatorio):</ion-label>
-              <ion-textarea placeholder="descripcion" [(ngModel)]="Datos.descripcion" name="descripcion"></ion-textarea>
-            </ion-item>
-            <button ion-button type="submit" color="primary" block>ENVIAR</button>
-          </form>
-        </div>
-        <div class="right">
-          <div id='search'>
-          <br>
-          <br>
-            <h2>Buscar</h2>
-            <ion-toolbar>
-                  <ion-item>
-                    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-                    <ion-list>
-                      <ion-item *ngFor="let user of users | async" class="itemuser">
-                        {{ user.displayName }}
-                        <ion-avatar item-left>
-                          <img src={{user.photoURL}}>
-                        </ion-avatar>
-                      </ion-item>
-                    </ion-list>
-                  </ion-item>
-            </ion-toolbar>
-          </div>
-          <div id='denunciasRecientes'>
-          <br>
-          <br>
+        <ion-item>
+          <ion-label color="primary" stacked>Descripcion (obligatorio):</ion-label>
+          <ion-textarea placeholder="descripcion" [(ngModel)]="Datos.descripcion" name="descripcion"></ion-textarea>
+        </ion-item>
+        <button ion-button type="submit" color="primary" block>ENVIAR</button>
+      </form>
+    </div>
+    <div class="right">
+      <div id='search'>
+        <br>
+        <br>
+        <h2>Buscar</h2>
+        <ion-toolbar>
+          <ion-item>
+            <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+          </ion-item>
+        </ion-toolbar>
+      </div>
+      <div id='denunciasRecientes'>
+        <br>
+        <br>
 
-            <h2>Denuncias Recientes</h2>
-            <ion-item *ngFor="let message of Denuncia | async" class="itemchat">
-              <div>
-                <p></p>
-              </div>
+        <h2>Denuncias Recientes</h2>
+        <ion-list>
+          <div *ngFor="let denuncia of denuncias2; let i=index">
+            <ion-item *ngIf="i<=5">
+              {{denuncia.info.encabezado}}
             </ion-item>
           </div>
-          <div>
-              <br>
-              <br>
-              <h2>Contacto</h2>
-              <p>WhatsApp: +1-504-502-7058</p>
-              <p>info@denunciashonduras.com</p>
+        </ion-list>
+      </div>
+      <div>
+        <br>
+        <br>
+        <h2>Contacto</h2>
+        <p>WhatsApp: +1-504-502-7058</p>
+        <p>info@denunciashonduras.com</p>
 
-
-            </div>
-        </div>
 
       </div>
+    </div>
+
+  </div>
 </ion-content>

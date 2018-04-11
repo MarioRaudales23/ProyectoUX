@@ -14,25 +14,42 @@ import { Observable } from '@firebase/util';
   templateUrl: 'contact.html'
 })
 export class ContactPage {
-  Datos={};
+  Datos = {};
   currentUser: any;
   userRef: any;
+  DenunciasRef: firebase.database.Reference;
   users: AngularFireList<any>;
   DenunciaRef: any;
   Denuncia: AngularFireList<any>;
-  constructor( public navCtrl: NavController,
-               public alertCtrl: AlertController,
-               public actionSheetCtrl: ActionSheetController,
-               public afDatabase: AngularFireDatabase,
-               public afAuth: AngularFireAuth) {
+  denuncias: Array<any>;
+  denuncias2: Array<any>;
+  loadedDenuncias: Array<any>;
+  constructor(public navCtrl: NavController,
+    public alertCtrl: AlertController,
+    public actionSheetCtrl: ActionSheetController,
+    public afDatabase: AngularFireDatabase,
+    public afAuth: AngularFireAuth) {
     this.DenunciaRef = afDatabase.list('denuncias');
     this.Denuncia = this.DenunciaRef.valueChanges();
+    this.DenunciaRef = afDatabase.list('denuncias');
+    this.Denuncia = this.DenunciaRef.valueChanges();
+    this.DenunciasRef = firebase.database().ref('denuncias');
+    this.DenunciasRef.on('value', denunciasList => {
+      let denuncias = [];
+      denunciasList.forEach(denuncia => {
+        denuncias.push(denuncia.val());
+        return false;
+      });
+      this.denuncias = denuncias;
+      this.denuncias2 = denuncias;
+      this.loadedDenuncias = denuncias;
+    });
     afAuth.authState.subscribe(user => {
       if (!user) {
         this.currentUser = null;
         return;
       }
-      this.currentUser = { uid: user.uid, photoURL: user.photoURL , displayname: user.displayName};
+      this.currentUser = { uid: user.uid, photoURL: user.photoURL, displayname: user.displayName };
     });
   }
   show() {
@@ -50,19 +67,20 @@ export class ContactPage {
     });
     actionSheet.present();
   }
-  DenunciaForm(){
-    const NewMensajeRef = this.DenunciaRef.push({info : this.Datos});
+  DenunciaForm() {
+    const NewMensajeRef = this.DenunciaRef.push({ info: this.Datos });
     NewMensajeRef.set({
-      info : this.Datos
+      info: this.Datos
     });
     let alert = this.alertCtrl.create({
       title: 'Denuncia enviada!',
       subTitle: 'Su denuncia se ha enviado con exito!',
     });
     alert.present();
-    setTimeout(function(){ 
-      window.location.reload();}, 1500);
-    
+    setTimeout(function () {
+      window.location.reload();
+    }, 1500);
+
 
   }
   login() {
@@ -80,6 +98,26 @@ export class ContactPage {
   }
   logout() {
     this.afAuth.auth.signOut();
+  }
+
+  initializeItems(): void {
+    this.denuncias = this.loadedDenuncias;
+  }
+
+  getItems(searchbar) {
+    this.initializeItems();
+    var q = (searchbar.srcElement || searchbar.target).value;
+    if (!q) {
+      return;
+    }
+    this.denuncias = this.denuncias.filter((v) => {
+      if (v.info.encabezado && q) {
+        if (v.info.encabezado.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+          return true;
+        }
+        return false;
+      }
+    });
   }
 
 }

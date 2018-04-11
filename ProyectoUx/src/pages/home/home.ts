@@ -16,9 +16,13 @@ import { Observable } from '@firebase/util';
 export class HomePage {
   currentUser: any;
   userRef: any;
+  DenunciasRef: firebase.database.Reference;
   users: AngularFireList<any>;
   DenunciaRef: any;
   Denuncia: AngularFireList<any>;
+  denuncias: Array<any>;
+  denuncias2: Array<any>;
+  loadedDenuncias: Array<any>;
   constructor( public navCtrl: NavController,
                public alertCtrl: AlertController,
                public actionSheetCtrl: ActionSheetController,
@@ -26,6 +30,16 @@ export class HomePage {
                public afAuth: AngularFireAuth) {
                 this.DenunciaRef = afDatabase.list('denuncias');
                 this.Denuncia = this.DenunciaRef.valueChanges();  
+                this.DenunciasRef = firebase.database().ref('denuncias');
+                this.DenunciasRef.on('value', denunciasList => {
+                  let denuncias = [];
+                  denunciasList.forEach(denuncia => {
+                    denuncias.push(denuncia.val());
+                    return false;
+                  });
+                  this.denuncias = denuncias;
+                  this.denuncias2 = denuncias;
+                 this.loadedDenuncias = denuncias;});
     afAuth.authState.subscribe(user => {
       if (!user) {
         this.currentUser = null;
@@ -65,4 +79,25 @@ export class HomePage {
   logout() {
     this.afAuth.auth.signOut();
   }
+
+  initializeItems(): void {
+    this.denuncias = this.loadedDenuncias;
+  }
+
+  getItems(searchbar) {
+    this.initializeItems();
+    var q = (searchbar.srcElement || searchbar.target).value;
+    if (!q) {
+      return;
+    }
+    this.denuncias = this.denuncias.filter((v) => {
+      if (v.info.encabezado && q) {
+        if (v.info.encabezado.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+          return true;
+        }
+        return false;
+      }
+    });
+}
+  
 }
