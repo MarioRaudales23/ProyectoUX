@@ -50,11 +50,6 @@
           <ion-label color="primary">Ubicacion (obligatorio):</ion-label>
           <ion-input type="tel" placeholder="ubicacion" type="text" [(ngModel)]="Datos.ubicacion" name="ubicacion"></ion-input>
         </ion-item>
-
-        <ion-item>
-          <ion-label color="primary" stacked>Descripcion (obligatorio):</ion-label>
-          <ion-textarea placeholder="descripcion" [(ngModel)]="Datos.descripcion" name="descripcion"></ion-textarea>
-        </ion-item>
         <ion-item>
           <ion-label color="primary" stacked>Categoria(obligatorio):</ion-label>
           <ion-select [(ngModel)]="Datos.categoria" name="categoria" placeholder="Categoria">
@@ -68,6 +63,11 @@
             <ion-option value="Tortura">Tortura</ion-option>
           </ion-select>
         </ion-item>
+        <ion-item>
+          <ion-label color="primary" stacked>Descripcion (obligatorio):</ion-label>
+          <ion-textarea placeholder="descripcion" [(ngModel)]="Datos.descripcion" name="descripcion"></ion-textarea>
+        </ion-item>
+
         <button ion-button type="submit" color="primary" block>ENVIAR</button>
       </form>
     </div>
