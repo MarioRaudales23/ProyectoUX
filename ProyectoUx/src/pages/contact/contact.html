@@ -32,34 +32,32 @@
          <div>
             <p>Ingresa tu denuncia en el formulario o envíanoslas a nuestro número de WhatsApp: +1-504-5027058.</p>
          </div>
-         <ion-list>
+          <form (ngSubmit)="DenunciaForm()">
             <ion-item>
               <ion-label color="primary">Nombre (opcional)</ion-label>
-              <ion-input placeholder="nombre"></ion-input>
+              <ion-input placeholder="nombre" type="text" [(ngModel)]="Datos.nombre" name="nombre"></ion-input>
             </ion-item>
-
             <ion-item>
               <ion-label color="primary" >Tu email (obligatorio)</ion-label>
-              <ion-input type="tel" placeholder="email"></ion-input>
+              <ion-input type="text" placeholder="email" [(ngModel)]="Datos.email" name="email"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label color="primary">Encabezado (obligatorio)</ion-label>
-                <ion-input placeholder="encabezado"></ion-input>
-              </ion-item>
-
-              <ion-item>
-                <ion-label color="primary" >Ubicacion (obligatorio)</ion-label>
-                <ion-input type="tel" placeholder="ubicacion"></ion-input>
-              </ion-item>
+              <ion-label color="primary">Encabezado (obligatorio)</ion-label>
+              <ion-input placeholder="encabezado" type="text" [(ngModel)]="Datos.encabezado" name="encabezado"></ion-input>
+            </ion-item>
 
             <ion-item>
-                <ion-label color="primary" stacked>Descripcion (obligatorio)</ion-label>
-              <ion-textarea placeholder="descripcion"></ion-textarea>
+              <ion-label color="primary" >Ubicacion (obligatorio)</ion-label>
+              <ion-input type="tel" placeholder="ubicacion" type="text" [(ngModel)]="Datos.ubicacion" name="ubicacion"></ion-input>
             </ion-item>
-          </ion-list>
-          <p>Subir archivo como evidencia (Imagen, video o documento). </p>
-          <button ion-button color="primary">ENVIAR</button>
 
+            <ion-item>
+              <ion-label color="primary" stacked>Descripcion (obligatorio)</ion-label>
+              <ion-textarea placeholder="descripcion" [(ngModel)]="Datos.descripcion" name="descripcion"></ion-textarea>
+            </ion-item>
+            <p>Subir archivo como evidencia (Imagen, video o documento). </p>
+            <button ion-button type="submit" color="primary" block>ENVIAR</button>
+          </form>
         </div>
         <div class="right">
           <div id='search'>

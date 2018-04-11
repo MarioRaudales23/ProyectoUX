@@ -14,20 +14,25 @@ import { Observable } from '@firebase/util';
   templateUrl: 'contact.html'
 })
 export class ContactPage {
+  Datos={};
   currentUser: any;
   userRef: any;
   users: AngularFireList<any>;
+  DenunciaRef: any;
+  Denuncia: AngularFireList<any>;
   constructor( public navCtrl: NavController,
                public alertCtrl: AlertController,
                public actionSheetCtrl: ActionSheetController,
                public afDatabase: AngularFireDatabase,
                public afAuth: AngularFireAuth) {
+    this.DenunciaRef = afDatabase.list('denuncias');
+    this.Denuncia = this.DenunciaRef.valueChanges();
     afAuth.authState.subscribe(user => {
       if (!user) {
         this.currentUser = null;
         return;
       }
-      this.currentUser = { uid: user.uid, photoURL: user.photoURL };
+      this.currentUser = { uid: user.uid, photoURL: user.photoURL , displayname: user.displayName};
     });
   }
   show() {
@@ -44,6 +49,19 @@ export class ContactPage {
       ]
     });
     actionSheet.present();
+  }
+  DenunciaForm(){
+    let tempuser:any;
+    if (this.currentUser != null){
+      tempuser = this.currentUser;
+    } else{
+      tempuser = {displayname: 'anonymus'}
+    }
+    const NewMensajeRef = this.DenunciaRef.push({info : this.Datos});
+    NewMensajeRef.set({
+      info : this.Datos,
+      user: tempuser,
+    });
   }
   login() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
