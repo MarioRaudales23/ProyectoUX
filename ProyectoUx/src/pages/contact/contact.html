@@ -1,18 +1,22 @@
 <ion-header>
-  <div>
-    <div>
-      <h1 id='tit' style="text-align: center">DENUNCIAS HONDURAS</h1>
-    </div>
-    <div *ngIf="afAuth.authState | async as user; else showLogin">
-      <ion-title>
-        <ion-item class="item item-trns text-center">
-          <ion-avatar item-end *ngIf="afAuth.authState | async" (click)="show()">
-            <img src={{currentUser.photoURL}}>
-          </ion-avatar>
-        </ion-item>
-      </ion-title>
-    </div>
-  </div>
+  <ion-row class="tit_row">
+    <ion-col col-9>
+      <ion-item no-lines>
+        <h1 id='tit' style="text-align: center">DENUNCIAS HONDURAS</h1>
+      </ion-item>
+    </ion-col>
+    <ion-col col-3>
+      <div *ngIf="afAuth.authState | async as user; else showLogin">
+        <ion-title>
+          <ion-item class="item item-trns text-center">
+            <ion-avatar item-end *ngIf="afAuth.authState | async" (click)="show()">
+              <img src={{currentUser.photoURL}}>
+            </ion-avatar>
+          </ion-item>
+        </ion-title>
+      </div>
+    </ion-col>
+  </ion-row>
 
   <ng-template #showLogin>
     <button float-right ion-button round color="danger" (click)="login()" icon-right>
@@ -61,23 +65,19 @@
           <div id='search'>
           <br>
           <br>
-
             <h2>Buscar</h2>
             <ion-toolbar>
-              <ion-row class="search_row">
-                <ion-col col-9>
-                  <ion-item no-lines>
-                    <ion-input type="text" placeholder="Buscar..." [(ngModel)]="search"></ion-input>
+                  <ion-item>
+                    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+                    <ion-list>
+                      <ion-item *ngFor="let user of users | async" class="itemuser">
+                        {{ user.displayName }}
+                        <ion-avatar item-left>
+                          <img src={{user.photoURL}}>
+                        </ion-avatar>
+                      </ion-item>
+                    </ion-list>
                   </ion-item>
-                </ion-col>
-                <ion-col col-3>
-                  <div class="buttons" item-right>
-                    <button ion-fab mini [disabled]="search === ''">
-                      <ion-icon name="search"></ion-icon>
-                    </button>
-                  </div>
-                </ion-col>
-              </ion-row>
             </ion-toolbar>
           </div>
           <div id='denunciasRecientes'>
