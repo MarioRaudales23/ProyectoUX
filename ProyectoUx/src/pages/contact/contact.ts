@@ -40,7 +40,7 @@ export class ContactPage {
       title: 'What do you want to do?',
       buttons: [
         {
-          text: 'LogOut',
+          text: 'Log Out',
           role: 'destructive',
           handler: () => {
             this.logout();
@@ -51,17 +51,19 @@ export class ContactPage {
     actionSheet.present();
   }
   DenunciaForm(){
-    let tempuser:any;
-    if (this.currentUser != null){
-      tempuser = this.currentUser;
-    } else{
-      tempuser = {displayname: 'anonymus'}
-    }
     const NewMensajeRef = this.DenunciaRef.push({info : this.Datos});
     NewMensajeRef.set({
-      info : this.Datos,
-      user: tempuser,
+      info : this.Datos
     });
+    let alert = this.alertCtrl.create({
+      title: 'Denuncia enviada!',
+      subTitle: 'Su denuncia se ha enviado con exito!',
+    });
+    alert.present();
+    setTimeout(function(){ 
+      window.location.reload();}, 1500);
+    
+
   }
   login() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
@@ -79,4 +81,5 @@ export class ContactPage {
   logout() {
     this.afAuth.auth.signOut();
   }
+
 }

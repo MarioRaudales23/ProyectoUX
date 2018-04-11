@@ -17,11 +17,15 @@ export class HomePage {
   currentUser: any;
   userRef: any;
   users: AngularFireList<any>;
+  DenunciaRef: any;
+  Denuncia: AngularFireList<any>;
   constructor( public navCtrl: NavController,
                public alertCtrl: AlertController,
                public actionSheetCtrl: ActionSheetController,
                public afDatabase: AngularFireDatabase,
                public afAuth: AngularFireAuth) {
+                this.DenunciaRef = afDatabase.list('denuncias');
+                this.Denuncia = this.DenunciaRef.valueChanges();  
     afAuth.authState.subscribe(user => {
       if (!user) {
         this.currentUser = null;

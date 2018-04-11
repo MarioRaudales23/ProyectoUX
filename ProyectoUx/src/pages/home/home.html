@@ -71,10 +71,10 @@
           <button ion-button color="secondary">TORTURA</button>
           <br>
         </div>
-        <ion-item *ngFor="let message of messages | async" class="itemchat">
+        <ion-item *ngFor="let message of Denuncia | async" class="itemchat">
           <div>
             <ion-card>
-
+              
             </ion-card>
           </div>
 
@@ -90,14 +90,6 @@
         <ion-toolbar>
           <ion-item>
             <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-            <ion-list>
-              <ion-item *ngFor="let user of users | async" class="itemuser">
-                {{ user.displayName }}
-                <ion-avatar item-left>
-                  <img src={{user.photoURL}}>
-                </ion-avatar>
-              </ion-item>
-            </ion-list>
           </ion-item>
         </ion-toolbar>
       </div>
@@ -106,7 +98,7 @@
       <br>
 
         <h2>Denuncias Recientes</h2>
-        <ion-item *ngFor="let message of messages | async" class="itemchat">
+        <ion-item *ngFor="let message of  Denuncia | async" class="itemchat">
           <div>
             <p></p>
           </div>
