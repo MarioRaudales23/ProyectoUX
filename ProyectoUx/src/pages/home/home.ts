@@ -23,23 +23,24 @@ export class HomePage {
   denuncias: Array<any>;
   denuncias2: Array<any>;
   loadedDenuncias: Array<any>;
-  constructor( public navCtrl: NavController,
-               public alertCtrl: AlertController,
-               public actionSheetCtrl: ActionSheetController,
-               public afDatabase: AngularFireDatabase,
-               public afAuth: AngularFireAuth) {
-                this.DenunciaRef = afDatabase.list('denuncias');
-                this.Denuncia = this.DenunciaRef.valueChanges();  
-                this.DenunciasRef = firebase.database().ref('denuncias');
-                this.DenunciasRef.on('value', denunciasList => {
-                  let denuncias = [];
-                  denunciasList.forEach(denuncia => {
-                    denuncias.push(denuncia.val());
-                    return false;
-                  });
-                  this.denuncias = denuncias;
-                  this.denuncias2 = denuncias;
-                 this.loadedDenuncias = denuncias;});
+  constructor(public navCtrl: NavController,
+    public alertCtrl: AlertController,
+    public actionSheetCtrl: ActionSheetController,
+    public afDatabase: AngularFireDatabase,
+    public afAuth: AngularFireAuth) {
+    this.DenunciaRef = afDatabase.list('denuncias');
+    this.Denuncia = this.DenunciaRef.valueChanges();
+    this.DenunciasRef = firebase.database().ref('denuncias');
+    this.DenunciasRef.on('value', denunciasList => {
+      let denuncias = [];
+      denunciasList.forEach(denuncia => {
+        denuncias.push(denuncia.val());
+        return false;
+      });
+      this.denuncias = denuncias;
+      this.denuncias2 = denuncias;
+      this.loadedDenuncias = denuncias;
+    });
     afAuth.authState.subscribe(user => {
       if (!user) {
         this.currentUser = null;
@@ -98,6 +99,6 @@ export class HomePage {
         return false;
       }
     });
-}
-  
+  }
+
 }
