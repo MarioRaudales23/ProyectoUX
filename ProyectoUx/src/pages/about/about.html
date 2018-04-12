@@ -31,8 +31,183 @@
 <ion-content padding>
     <div class="allHome">
       <div class="left">
-
+        <ion-toolbar no-borde end>
+          <ion-segment [(ngModel)]="main">
+            <ion-segment-button value="Asesinatos Extranjeros">
+              Asesinatos Extranjeros
+            </ion-segment-button>
+            <ion-segment-button value="Brutalidad Policial">
+              Brutalidad Policial
+            </ion-segment-button>
+            <ion-segment-button value="Desalojos Violentos">
+              Desalojos Violentos
+            </ion-segment-button>
+            <ion-segment-button value="Personas Desaperecidas">
+              Personas Desaperecidas
+            </ion-segment-button>
+            <ion-segment-button value="Personas detenidas">
+              Personas detenidas
+            </ion-segment-button>
+            <ion-segment-button value="Saqueos">
+              Saqueos
+            </ion-segment-button>
+            <ion-segment-button value="Censura">
+              Censura
+            </ion-segment-button>
+            <ion-segment-button value="Tortura">
+              Tortura
+            </ion-segment-button>
+          </ion-segment>
+        </ion-toolbar>
+        <div [ngSwitch]="main">
+          <ion-item *ngSwitchCase="'Asesinatos Extranjeros'">
+            <ion-list>
+              <div *ngFor="let denuncia of denuncias;">
+                <ion-item text-wrap *ngIf="denuncia.info.categoria == 'Asesinatos' ">
+                  <ion-card >
+                    <ion-card-header>
+                      <h2>
+                        <b>{{ denuncia.info.encabezado }} </b>
+                      </h2>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <p>{{ denuncia.info.descripcion }}</p>
+                    </ion-card-content>
+                  </ion-card>
+                </ion-item>
+              </div>
+            </ion-list>
+          </ion-item>
+          <ion-item *ngSwitchCase="'Brutalidad Policial'">
+            <ion-list>
+              <div *ngFor="let denuncia of denuncias;">
+                <ion-item text-wrap *ngIf="denuncia.info.categoria == 'Brutalidad' ">
+                  <ion-card >
+                    <ion-card-header>
+                      <h2>
+                        <b>{{ denuncia.info.encabezado }} </b>
+                      </h2>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <p>{{ denuncia.info.descripcion }}</p>
+                    </ion-card-content>
+                  </ion-card>
+                </ion-item>
+              </div>
+            </ion-list>
+          </ion-item>
+          <ion-item *ngSwitchCase="'Desalojos Violentos'">
+            <ion-list>
+              <div *ngFor="let denuncia of denuncias;">
+                <ion-item text-wrap *ngIf="denuncia.info.categoria == 'Desalojos' ">
+                  <ion-card >
+                    <ion-card-header>
+                      <h2>
+                        <b>{{ denuncia.info.encabezado }} </b>
+                      </h2>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <p>{{ denuncia.info.descripcion }}</p>
+                    </ion-card-content>
+                  </ion-card>
+                </ion-item>
+              </div>
+            </ion-list>
+          </ion-item>
+          <ion-item *ngSwitchCase="'Personas Desaperecidas'">
+            <ion-list>
+              <div *ngFor="let denuncia of denuncias;">
+                <ion-item text-wrap *ngIf="denuncia.info.categoria == 'Desaparecidas' ">
+                  <ion-card >
+                    <ion-card-header>
+                      <h2>
+                        <b>{{ denuncia.info.encabezado }} </b>
+                      </h2>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <p>{{ denuncia.info.descripcion }}</p>
+                    </ion-card-content>
+                  </ion-card>
+                </ion-item>
+              </div>
+            </ion-list>
+          </ion-item>
+          <ion-item *ngSwitchCase="'Personas detenidas'">
+            <ion-list>
+              <div *ngFor="let denuncia of denuncias;">
+                <ion-item text-wrap *ngIf="denuncia.info.categoria == 'Detenidas' ">
+                  <ion-card >
+                    <ion-card-header>
+                      <h2>
+                        <b>{{ denuncia.info.encabezado }} </b>
+                      </h2>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <p>{{ denuncia.info.descripcion }}</p>
+                    </ion-card-content>
+                  </ion-card>
+                </ion-item>
+              </div>
+            </ion-list>
+          </ion-item>
+          <ion-item *ngSwitchCase="'Saqueos'">
+            <ion-list>
+              <div *ngFor="let denuncia of denuncias;">
+                <ion-item text-wrap *ngIf="denuncia.info.categoria == 'Saqueos' ">
+                  <ion-card >
+                    <ion-card-header>
+                      <h2>
+                        <b>{{ denuncia.info.encabezado }} </b>
+                      </h2>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <p>{{ denuncia.info.descripcion }}</p>
+                    </ion-card-content>
+                  </ion-card>
+                </ion-item>
+              </div>
+            </ion-list>
+          </ion-item>
+          <ion-item *ngSwitchCase="'Censura'">
+            <ion-list>
+              <div *ngFor="let denuncia of denuncias;">
+                <ion-item text-wrap *ngIf="denuncia.info.categoria == 'Censura' ">
+                  <ion-card >
+                    <ion-card-header>
+                      <h2>
+                        <b>{{ denuncia.info.encabezado }} </b>
+                      </h2>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <p>{{ denuncia.info.descripcion }}</p>
+                    </ion-card-content>
+                  </ion-card>
+                </ion-item>
+              </div>
+            </ion-list>
+          </ion-item>
+          <ion-item *ngSwitchCase="'Tortura'">
+            <ion-list>
+              <div *ngFor="let denuncia of denuncias;">
+                <ion-item text-wrap *ngIf="denuncia.info.categoria == 'Tortura' ">
+                  <ion-card >
+                    <ion-card-header>
+                      <h2>
+                        <b>{{ denuncia.info.encabezado }} </b>
+                      </h2>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <p>{{ denuncia.info.descripcion }}</p>
+                    </ion-card-content>
+                  </ion-card>
+                </ion-item>
+              </div>
+            </ion-list>
+          </ion-item>
+        </div>
       </div>
+
+
       <div class="right">
         <div id='search'>
           <br>
