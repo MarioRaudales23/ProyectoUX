@@ -76,8 +76,8 @@
           <br>
         </div>
         <ion-list>
-          <div *ngFor="let denuncia of denuncias; let idx = index">
-            <ion-item text-wrap *ngIf="denuncia.info.categoria == categoria && idx <=5">
+          <div *ngFor="let denuncia of denuncias;">
+            <ion-item text-wrap *ngIf="denuncia.info.categoria == categoria ">
               <ion-card >
                 <ion-card-header>
                   <h2>
